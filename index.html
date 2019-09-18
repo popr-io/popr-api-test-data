@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/multimarkdown_layout.css">
+    <style>
+
+        body.multimarkdown-preview,
+        body.multimarkdown-wiki-preview {
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body class="multimarkdown-preview">
+<div class="content">
+    <h1 id="popr-api-test-data" md-pos="0-20"><span md-pos="2-20"><a href="#popr-api-test-data" name="popr-api-test-data">popr-api-test-data</a></span></h1>
+    <p md-pos="21-48"><span md-pos="21-47">Test data for the POPr api</span></p>
+    <p md-pos="50-343"><span md-pos="50-159">The hashes in a POPr receipt use the sha256 hashing algorithm. Hashes can be tested with the following tools:</span><br />
+        <span md-pos="160-210">- openssl: echo -n &quot;string&quot; | openssl dgst -sha256</span><br />
+        <span md-pos="211-260">- sha256sum (linux): echo -n &quot;string&quot; | sha256sum</span><br />
+        <span md-pos="261-314">- shasum (OSX): echo -n &quot;string&quot; | shasum -a 256 -t -</span><br />
+        <span md-pos="315-342">- <a href="/sha256.html">/sha256.html</a> on this site</span></p>
+    <p md-pos="344-431"><span md-pos="344-430">The receipt serializing and hashing can be tested on the <a href="/hash.html">/hash.html</a> page on this site.</span></p>
+    <p md-pos="432-441"><span md-pos="432-440">Example:</span></p>
+    <pre md-pos="441-1735"><code md-pos="445-1731">{
+  &quot;time&quot;: 1560100862,
+  &quot;retailerId&quot;: &quot;popr-test-store&quot;,
+  &quot;shopId&quot;: &quot;1&quot;,
+  &quot;terminalId&quot;: &quot;POS1&quot;,
+  &quot;employeeId&quot;: &quot;ams25522&quot;,
+  &quot;invoiceId&quot;: &quot;1212&quot;,
+  &quot;totalValue&quot;: 10865,
+  &quot;totalVAT&quot;: 1886,
+  &quot;vatLines&quot;: [
+    {
+      &quot;vat&quot;: 2100,
+      &quot;vatAmount&quot;: 1886
+    }
+  ],
+  &quot;lines&quot;: [
+    {
+      &quot;productId&quot;: &quot;4022&quot;,
+      &quot;description&quot;: &quot;Keychain CITIES 3Cha&quot;,
+      &quot;amount&quot;: 495,
+      &quot;vat&quot;: 2100,
+      &quot;vatAmount&quot;: 86,
+      &quot;number&quot;: 1
+    },
+    {
+      &quot;productId&quot;: &quot;4688&quot;,
+      &quot;description&quot;: &quot;Opener Window STAR G&quot;,
+      &quot;amount&quot;: 995,
+      &quot;vat&quot;: 2100,
+      &quot;vatAmount&quot;: 173,
+      &quot;number&quot;: 1
+    },
+    {
+      &quot;productId&quot;: &quot;4690&quot;,
+      &quot;description&quot;: &quot;Iphone 10 Green&quot;,
+      &quot;amount&quot;: 1295,
+      &quot;vat&quot;: 2100,
+      &quot;vatAmount&quot;: 225,
+      &quot;number&quot;: 1
+    },
+    {
+      &quot;productId&quot;: &quot;4339&quot;,
+      &quot;description&quot;: &quot;Bag Reusable Shopper&quot;,
+      &quot;amount&quot;: 590,
+      &quot;vat&quot;: 2100,
+      &quot;vatAmount&quot;: 102,
+      &quot;number&quot;: 1
+    },
+    {
+      &quot;productId&quot;: &quot;3748&quot;,
+      &quot;description&quot;: &quot;Umbrella Green Big&quot;,
+      &quot;amount&quot;: 2495,
+      &quot;vat&quot;: 2100,
+      &quot;vatAmount&quot;: 433,
+      &quot;number&quot;: 1
+    },
+    {
+      &quot;productId&quot;: &quot;3552&quot;,
+      &quot;description&quot;: &quot;Speaker Mini NJOY Bl&quot;,
+      &quot;amount&quot;: 4995,
+      &quot;vat&quot;: 2100,
+      &quot;vatAmount&quot;: 867,
+      &quot;number&quot;: 1
+    }
+  ]
+}
+
+</code></pre>
+    <p md-pos="1736-1949"><span md-pos="1736-1797">string: 1560100862/popr-test-store/1/POS1/1212/10865/1886////</span><br />
+        <span md-pos="1798-1868">hash: ebc0b790a210d014fd16f9facf2d10cd17dc74515a9392bb65d51fefe6f441f4</span><br />
+        <span md-pos="1869-1948">hashSignature: 4d217216d07d1e7141cba8ee72097462f684cc06f1577f664f9d1628ae20dba6</span></p>
+</div>
+</body>
+</html>

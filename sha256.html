@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POPR sha256 test</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
+<style>
+    body {
+        font-size: 16px;
+    }
+    textarea {
+        font-size: 16px;
+        display: block;
+        width: 480px;
+        height: 120px;
+    }
+</style>
+<body>
+
+<h1>POPR sha256 test page</h1>
+
+<div class="input">
+    <textarea class="popr-string" placeholder="String to hash"></textarea>
+    <button class="popr-calcuate">Calculate hash</button>
+</div>
+
+<div class="output">
+    <div class="popr-hash"></div>
+</div>
+
+</body>
+</html>
+<script language="JavaScript">
+    $('.popr-calcuate').on('click', function() {
+        try {
+            var textString = $('.popr-string').val();
+
+            var hash = sha256(textString);
+            $('.popr-hash').html('<br/><b>Hash: </b><br/>' + hash);
+        } catch(e) {
+            alert(e);
+        }
+    });
+</script>

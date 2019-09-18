@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POPR hash test</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
+<style>
+    body {
+        font-size: 16px;
+    }
+    textarea {
+        font-size: 16px;
+        display: block;
+        width: 480px;
+        height: 320px;
+    }
+    input {
+        font-size: 16px;
+        display: block;
+        width: 480px;
+    }
+</style>
+<body>
+
+<h1>POPR hashing test page</h1>
+
+<div class="input">
+    <textarea class="popr-receipt" placeholder="POPR receipt JSON"></textarea>
+    <input type="text" name="popr-secret" placeholder="POPR reatailer secret (optional)"/>
+    <button class="popr-calcuate">Calculate hash</button>
+</div>
+
+<div class="output">
+    <div class="popr-hashSource"></div>
+    <div class="popr-hash"></div>
+    <div class="popr-hashSignature"></div>
+</div>
+
+</body>
+</html>
+<script language="JavaScript">
+    var hashSource = function(receipt) {
+        var ncp = receipt.ncp || {};
+        return receipt.time.toString() + '/' +
+            receipt.retailerId + '/' +
+            (receipt.shopId || '') + '/' +
+            (receipt.terminalId || '') + '/' +
+            receipt.invoiceId + '/' +
+            receipt.totalValue.toString() + '/' +
+            receipt.totalVAT.toString() + '/' +
+            (ncp.name || '') + '/' +
+            (ncp.country || '') + '/' +
+            (ncp.passportNr || '') + '/' +
+            (ncp.passportExpiration || '')
+            ;
+    };
+
+    $('.popr-calcuate').on('click', function() {
+        try {
+            var receipt = JSON.parse($('.popr-receipt').val());
+
+            var source = hashSource(receipt);
+            $('.popr-hashSource').html('<br/><b>Hash Source: </b><br/>' + source);
+
+            var hash = sha256(source);
+            $('.popr-hash').html('<br/><b>Hash: </b><br/>' + hash);
+
+            var secret = $('input[name="popr-secret"]').val();
+            if (secret) {
+                var hashSignature = sha256(hash + secret);
+                $('.popr-hashSignature').html('<br/><b>Hash Signature: </b><br/>' + hashSignature);
+
+                var hashSignature = sha256(hash + 'revoke' + secret);
+                $('.popr-hashSignature').html('<br/><b>Revoke Signature: </b><br/>' + hashSignature);
+            }
+        } catch(e) {
+            alert(e);
+        }
+    });
+</script>
